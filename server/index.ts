@@ -16,17 +16,17 @@ export function createServer() {
   app.use(express.urlencoded({ extended: true }));
 
   // Health & demo
-  app.get("/api/ping", (_req, res) => {
+  app.get("/ping", (_req, res) => {
     const ping = process.env.PING_MESSAGE ?? "ping";
     res.json({ message: ping });
   });
-  app.get("/api/demo", handleDemo);
+  app.get("/demo", handleDemo);
 
   // FRA Atlas mock APIs
-  app.post("/api/ingest", postIngest);
-  app.get("/api/claims", getClaims);
-  app.get("/api/assets", getAssets);
-  app.get("/api/dss/recommend/:claim_id", getRecommendation);
+  app.post("/ingest", postIngest);
+  app.get("/claims", getClaims);
+  app.get("/assets", getAssets);
+  app.get("/dss/recommend/:claim_id", getRecommendation);
 
   return app;
 }
