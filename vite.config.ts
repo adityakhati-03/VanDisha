@@ -10,6 +10,7 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
     fs: {
       allow: [
+        ".", // <-- Added project root to allow serving index.html
         "./client",
         "./shared",
         "./node_modules/leaflet/dist",
