@@ -17,11 +17,7 @@ export default function MapPage() {
     <div className="flex h-[calc(100vh-64px)]">
       <Sidebar />
       <div className="relative flex-1">
-        <MapContainer center={[28.624, 77.203]} zoom={14} className="h-full w-full">
-          <TileLayer attribution='&copy; OpenStreetMap contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          <FRAClaimLayer />
-          <AssetLayer />
-        </MapContainer>
+        <MapCanvas />
         <div className="absolute right-4 top-4 z-[500] w-80">
           <UploadBox />
         </div>
