@@ -28,10 +28,21 @@ export default function UploadBox() {
         onDrop={onDrop}
         className="border-2 border-dashed rounded-xl p-4 text-center bg-white"
       >
-        <p className="text-sm text-muted-foreground">Drag & drop a claim PDF here, or select a file</p>
+        <p className="text-sm text-muted-foreground">
+          Drag & drop a claim PDF here, or select a file
+        </p>
         <div className="mt-3 flex items-center justify-center gap-2">
-          <input ref={inputRef} id="file" type="file" accept=".pdf,application/pdf" onChange={onChange} className="hidden" />
-          <Button variant="outline" onClick={() => inputRef.current?.click()}>Choose File</Button>
+          <input
+            ref={inputRef}
+            id="file"
+            type="file"
+            accept=".pdf,application/pdf"
+            onChange={onChange}
+            className="hidden"
+          />
+          <Button variant="outline" onClick={() => inputRef.current?.click()}>
+            Choose File
+          </Button>
           <Button onClick={onUpload} disabled={!file || loading.ingest}>
             {loading.ingest ? (
               <>
@@ -45,10 +56,14 @@ export default function UploadBox() {
         {file && (
           <div className="mt-3 rounded-lg bg-muted p-3 text-left text-xs">
             <div className="font-medium">{file.name}</div>
-            <div className="text-muted-foreground">{(file.size / 1024).toFixed(1)} KB</div>
+            <div className="text-muted-foreground">
+              {(file.size / 1024).toFixed(1)} KB
+            </div>
           </div>
         )}
-        {error.ingest && <div className="mt-2 text-sm text-red-600">{error.ingest}</div>}
+        {error.ingest && (
+          <div className="mt-2 text-sm text-red-600">{error.ingest}</div>
+        )}
       </div>
     </div>
   );

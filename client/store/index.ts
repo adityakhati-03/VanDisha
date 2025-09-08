@@ -8,7 +8,12 @@ export type ClaimFeature = {
     claim_id: string;
     type: "IFR" | "CR" | "CFR";
     status: "Approved" | "Pending";
-    claimant?: { name: string; village?: string; district?: string; state?: string };
+    claimant?: {
+      name: string;
+      village?: string;
+      district?: string;
+      state?: string;
+    };
   };
   geometry: any;
 };
@@ -30,7 +35,9 @@ export interface AtlasState {
   fetchAssets: () => Promise<void>;
   setSelectedClaim: (feature: ClaimFeature | null) => void;
   fetchRecommendations: (claimId: string) => Promise<void>;
-  toggleFilter: (path: ["claimTypes" | "status" | "showAssets", string]) => void;
+  toggleFilter: (
+    path: ["claimTypes" | "status" | "showAssets", string],
+  ) => void;
   uploadFile: (file: File) => Promise<void>;
 }
 
@@ -48,7 +55,10 @@ export const useAtlasStore = create<AtlasState>((set, get) => ({
   error: {},
 
   fetchClaims: async () => {
-    set((s) => ({ loading: { ...s.loading, claims: true }, error: { ...s.error, claims: undefined } }));
+    set((s) => ({
+      loading: { ...s.loading, claims: true },
+      error: { ...s.error, claims: undefined },
+    }));
     try {
       const data = await api.getClaims();
       set({ claims: data });
@@ -60,7 +70,10 @@ export const useAtlasStore = create<AtlasState>((set, get) => ({
   },
 
   fetchAssets: async () => {
-    set((s) => ({ loading: { ...s.loading, assets: true }, error: { ...s.error, assets: undefined } }));
+    set((s) => ({
+      loading: { ...s.loading, assets: true },
+      error: { ...s.error, assets: undefined },
+    }));
     try {
       const data = await api.getAssets();
       set({ assets: data });
@@ -74,7 +87,10 @@ export const useAtlasStore = create<AtlasState>((set, get) => ({
   setSelectedClaim: (feature) => set({ selectedClaim: feature }),
 
   fetchRecommendations: async (claimId: string) => {
-    set((s) => ({ loading: { ...s.loading, dss: true }, error: { ...s.error, dss: undefined } }));
+    set((s) => ({
+      loading: { ...s.loading, dss: true },
+      error: { ...s.error, dss: undefined },
+    }));
     try {
       const data = await api.getRecommendations(claimId);
       set({ recommendations: data.recommendations });
@@ -86,11 +102,22 @@ export const useAtlasStore = create<AtlasState>((set, get) => ({
   },
 
   toggleFilter: ([root, key]) => {
-    set((s) => ({ filters: { ...s.filters, [root]: { ...(s.filters as any)[root], [key]: !(s.filters as any)[root][key] } } }));
+    set((s) => ({
+      filters: {
+        ...s.filters,
+        [root]: {
+          ...(s.filters as any)[root],
+          [key]: !(s.filters as any)[root][key],
+        },
+      },
+    }));
   },
 
   uploadFile: async (file) => {
-    set((s) => ({ loading: { ...s.loading, ingest: true }, error: { ...s.error, ingest: undefined } }));
+    set((s) => ({
+      loading: { ...s.loading, ingest: true },
+      error: { ...s.error, ingest: undefined },
+    }));
     try {
       await api.ingest(file);
       // After ingest, refresh claims

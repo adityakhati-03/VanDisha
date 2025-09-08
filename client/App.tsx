@@ -19,13 +19,21 @@ function Header() {
     <header className="sticky top-0 z-50 h-16 border-b bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         <Link to="/" className="flex items-center gap-2 text-lg font-semibold">
-          <span className="grid h-8 w-8 place-items-center rounded-md bg-emerald-600 text-white">FA</span>
+          <span className="grid h-8 w-8 place-items-center rounded-md bg-emerald-600 text-white">
+            FA
+          </span>
           <span>FRA Atlas</span>
         </Link>
         <nav className="flex items-center gap-4 text-sm text-slate-600">
-          <Link to="/" className="hover:text-slate-900">Home</Link>
-          <Link to="/upload" className="hover:text-slate-900">Upload</Link>
-          <Link to="/map" className="hover:text-slate-900">Map</Link>
+          <Link to="/" className="hover:text-slate-900">
+            Home
+          </Link>
+          <Link to="/upload" className="hover:text-slate-900">
+            Upload
+          </Link>
+          <Link to="/map" className="hover:text-slate-900">
+            Map
+          </Link>
         </nav>
       </div>
     </header>

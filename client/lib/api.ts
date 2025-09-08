@@ -32,7 +32,9 @@ export const api = {
   getAssets: async (): Promise<GeoJSON> => {
     return request("/api/assets");
   },
-  getRecommendations: async (claimId: string): Promise<{ claim_id: string; recommendations: DSSRecommendation[] }> => {
+  getRecommendations: async (
+    claimId: string,
+  ): Promise<{ claim_id: string; recommendations: DSSRecommendation[] }> => {
     return request(`/api/dss/recommend/${encodeURIComponent(claimId)}`);
   },
 };
