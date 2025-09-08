@@ -25,7 +25,7 @@ export default function Index() {
               Upload claim PDFs, explore IFR/CR/CFR layers, overlay NDVI/NDWI assets, and get decision support recommendations.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button className="" onClick={() => navigate("/map")}>Upload Claim</Button>
+              <Button className="" onClick={() => navigate("/upload")}>Upload Claim</Button>
               <Button variant="outline" onClick={() => navigate("/map")}>Open Map</Button>
             </div>
             <div className="mt-8 grid grid-cols-3 gap-4 text-sm">
