@@ -32,8 +32,8 @@ function expressPlugin(): Plugin {
     configureServer(server) {
       const app = createServer();
 
-      // Add Express app as middleware to Vite dev server
-      server.middlewares.use(app);
+      // Mount Express only under /api to preserve SPA routing
+      server.middlewares.use("/api", app);
     },
   };
 }
