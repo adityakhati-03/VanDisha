@@ -50,7 +50,7 @@ export default function FRAClaimLayer() {
         .map((f: any) => (
           <Marker key={f.properties.claim_id} position={[f.geometry.coordinates[1], f.geometry.coordinates[0]]} icon={crIcon} eventHandlers={{ click: () => setSelectedClaim(f as any) }}>
             <Popup>
-              <div>{(MapPopup as any)({ feature: f as any })}</div>
+              <MapPopup feature={f as any} />
             </Popup>
           </Marker>
         ))}
