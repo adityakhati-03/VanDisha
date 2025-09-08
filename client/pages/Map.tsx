@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useAtlasStore } from "@/store";
 import Sidebar from "@/components/Sidebar";
 import RecommendationCard from "@/components/RecommendationCard";
-import UploadBox from "@/components/UploadBox";
 import MapCanvas from "@/components/MapCanvas";
 
 export default function MapPage() {
@@ -18,9 +17,6 @@ export default function MapPage() {
       <Sidebar />
       <div className="relative flex-1">
         <MapCanvas />
-        <div className="absolute right-4 top-4 z-[1500] w-80 pointer-events-auto">
-          <UploadBox />
-        </div>
         <RecommendationCard />
       </div>
     </div>
