@@ -40,9 +40,8 @@ export default function FRAClaimLayer() {
           const f = feature as any as ClaimFeature;
           if (f.geometry.type === "Polygon" || f.geometry.type === "MultiPolygon") {
             layer.on("click", () => setSelectedClaim(f));
-            layer.bindPopup(() => {
-              return (MapPopup as any)({ feature: f });
-            });
+            const html = `<div><strong>${f.properties.claim_id} • ${f.properties.type}</strong><br/><span>Status: ${f.properties.status}</span></div>`;
+            layer.bindPopup(html);
           }
         }}
       />
