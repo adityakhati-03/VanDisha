@@ -1,11 +1,9 @@
 import { useEffect } from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
 import { useAtlasStore } from "@/store";
-import FRAClaimLayer from "@/components/FRAClaimLayer";
-import AssetLayer from "@/components/AssetLayer";
 import Sidebar from "@/components/Sidebar";
 import RecommendationCard from "@/components/RecommendationCard";
 import UploadBox from "@/components/UploadBox";
+import MapCanvas from "@/components/MapCanvas";
 
 export default function MapPage() {
   const { fetchClaims, fetchAssets } = useAtlasStore();
