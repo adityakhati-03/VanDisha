@@ -9,6 +9,8 @@ const LeafletMap = lazy(async () => {
     default: () => (
       <mod.MapContainer center={[28.624, 77.203]} zoom={14} className="h-full w-full">
         <mod.TileLayer attribution='&copy; OpenStreetMap contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <FRAClaimLayer />
+        <AssetLayer />
       </mod.MapContainer>
     ),
   };
