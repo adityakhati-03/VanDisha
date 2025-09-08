@@ -18,7 +18,7 @@ export default function MapPage() {
       <Sidebar />
       <div className="relative flex-1">
         <MapCanvas />
-        <div className="absolute right-4 top-4 z-[500] w-80">
+        <div className="absolute right-4 top-4 z-[1500] w-80 pointer-events-auto">
           <UploadBox />
         </div>
         <RecommendationCard />
