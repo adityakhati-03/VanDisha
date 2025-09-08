@@ -24,6 +24,7 @@ function Header() {
         </Link>
         <nav className="flex items-center gap-4 text-sm text-slate-600">
           <Link to="/" className="hover:text-slate-900">Home</Link>
+          <Link to="/upload" className="hover:text-slate-900">Upload</Link>
           <Link to="/map" className="hover:text-slate-900">Map</Link>
         </nav>
       </div>
