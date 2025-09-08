@@ -6,30 +6,33 @@ export interface DSSRecommendation {
   score: number;
 }
 
+async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const res = await fetch(path, {
+    credentials: "same-origin",
+    cache: "no-store",
+    headers: { ...(init?.headers || {}) },
+    ...init,
+  });
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`${res.status} ${res.statusText} ${text}`.trim());
+  }
+  return res.json();
+}
+
 export const api = {
   ingest: async (file: File) => {
     const form = new FormData();
     form.append("file", file);
-    const res = await fetch("/api/ingest", {
-      method: "POST",
-      body: form,
-    });
-    if (!res.ok) throw new Error("Upload failed");
-    return res.json();
+    return request("/api/ingest", { method: "POST", body: form });
   },
   getClaims: async (): Promise<GeoJSON> => {
-    const res = await fetch("/api/claims");
-    if (!res.ok) throw new Error("Failed to fetch claims");
-    return res.json();
+    return request("/api/claims");
   },
   getAssets: async (): Promise<GeoJSON> => {
-    const res = await fetch("/api/assets");
-    if (!res.ok) throw new Error("Failed to fetch assets");
-    return res.json();
+    return request("/api/assets");
   },
-  getRecommendations: async (claimId: string): Promise<{claim_id: string; recommendations: DSSRecommendation[]}> => {
-    const res = await fetch(`/api/dss/recommend/${encodeURIComponent(claimId)}`);
-    if (!res.ok) throw new Error("Failed to fetch recommendations");
-    return res.json();
+  getRecommendations: async (claimId: string): Promise<{ claim_id: string; recommendations: DSSRecommendation[] }> => {
+    return request(`/api/dss/recommend/${encodeURIComponent(claimId)}`);
   },
 };
