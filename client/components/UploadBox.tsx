@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useAtlasStore } from "@/store";
 import { Button } from "@/components/ui/button";
 import LoadingSpinner from "@/components/LoadingSpinner";
@@ -6,6 +6,7 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 export default function UploadBox() {
   const { uploadFile, loading, error } = useAtlasStore();
   const [file, setFile] = useState<File | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const onDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     const f = e.dataTransfer.files?.[0];
@@ -29,10 +30,8 @@ export default function UploadBox() {
       >
         <p className="text-sm text-muted-foreground">Drag & drop a claim PDF here, or select a file</p>
         <div className="mt-3 flex items-center justify-center gap-2">
-          <input id="file" type="file" accept="application/pdf" onChange={onChange} className="hidden" />
-          <label htmlFor="file">
-            <Button variant="outline">Choose File</Button>
-          </label>
+          <input ref={inputRef} id="file" type="file" accept=".pdf,application/pdf" onChange={onChange} className="hidden" />
+          <Button variant="outline" onClick={() => inputRef.current?.click()}>Choose File</Button>
           <Button onClick={onUpload} disabled={!file || loading.ingest}>
             {loading.ingest ? (
               <>
