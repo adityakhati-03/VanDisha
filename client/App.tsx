@@ -10,6 +10,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import MapPage from "./pages/Map";
+import UploadPage from "./pages/Upload";
 
 const queryClient = new QueryClient();
 
